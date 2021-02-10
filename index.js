@@ -7,6 +7,7 @@ require("./models/User");
 require("./services/passport.js");
 const app = express();
 const bodyParser = require("body-parser");
+require("./models/Survey");
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
@@ -24,6 +25,7 @@ app.use(passport.session());
 
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
+require("./routes/surveyRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
   //  If a request comes in for any route that we don't have covered in the server, look in client/build and look for the file located at that route.
